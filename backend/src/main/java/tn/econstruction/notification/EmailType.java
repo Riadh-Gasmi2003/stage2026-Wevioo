@@ -1,0 +1,9 @@
+package tn.econstruction.notification;
+
+public enum EmailType {
+    ADDITIONAL_DOCUMENTS_REQUIRED,
+    APPLICATION_COMPLIANT,
+    APPLICATION_REJECTED,
+    PERMIT_ISSUED,
+    NON_OPPOSITION_CERTIFICATE
+}

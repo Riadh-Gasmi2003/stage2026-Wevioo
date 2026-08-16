@@ -1,0 +1,26 @@
+{
+  "greeting": "Bonjour {{prenom}} {{nom}},",
+  "signature": "Cordialement,\nLe service e-Construction Tunisie",
+  "types": {
+    "ADDITIONAL_DOCUMENTS_REQUIRED": {
+      "subject": "Complément de dossier requis — {{numero}}",
+      "content": "Des pièces complémentaires sont nécessaires pour poursuivre l'instruction de votre dossier {{numero}}.\n\nMotif : {{motif}}\n\nMerci de vous connecter à votre espace personnel pour déposer les documents demandés."
+    },
+    "APPLICATION_COMPLIANT": {
+      "subject": "Dossier conforme — transmis pour décision — {{numero}}",
+      "content": "Votre dossier {{numero}} a été jugé conforme par l'agent technique et a été transmis au secrétaire général pour décision finale.\n\nVous serez notifié(e) dès que la décision sera rendue."
+    },
+    "APPLICATION_REJECTED": {
+      "subject": "Décision sur votre dossier — {{numero}}",
+      "content": "Nous vous informons que votre dossier {{numero}} a fait l'objet d'un refus.\n\nMotif : {{motif}}\n\nVous pouvez consulter l'avis de refus détaillé en pièce jointe."
+    },
+    "PERMIT_ISSUED": {
+      "subject": "Votre permis de bâtir a été délivré — {{numero}}",
+      "content": "Nous avons le plaisir de vous informer que le permis de bâtir relatif à votre dossier {{numero}} a été délivré.\n\nVous trouverez le document officiel en pièce jointe."
+    },
+    "NON_OPPOSITION_CERTIFICATE": {
+      "subject": "Certificat de non-opposition — {{numero}}",
+      "content": "Le délai légal d'instruction de votre dossier {{numero}} étant expiré sans décision, un certificat de non-opposition (art. 74 CATU) a été délivré.\n\nVous trouverez le document officiel en pièce jointe."
+    }
+  }
+}

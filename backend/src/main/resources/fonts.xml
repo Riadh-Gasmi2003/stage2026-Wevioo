@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Déclare la police FreeSerif (GNU FreeFont, licence libre) auprès de JasperReports.
+  Contrairement aux polices logiques par défaut (Helvetica/Arial), FreeSerif contient
+  des glyphes arabes (~255 caractères couvrant le bloc Unicode Arabe 0600-06FF), donc
+  les libellés arabes des PDF (reports_messages_ar.properties) s'affichent réellement
+  au lieu de rester blancs. Utilisée aussi pour le français, pour un rendu uniforme
+  entre les deux langues.
+-->
+<fontFamilies xmlns="http://jasperreports.sourceforge.net/jasperreports/fonts"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/fonts http://jasperreports.sourceforge.net/xsd/fonts.xsd">
+    <fontFamily name="FreeSerif">
+        <normal>fonts/FreeSerif.ttf</normal>
+        <bold>fonts/FreeSerifBold.ttf</bold>
+        <italic>fonts/FreeSerif.ttf</italic>
+        <boldItalic>fonts/FreeSerifBold.ttf</boldItalic>
+        <pdfEncoding>Identity-H</pdfEncoding>
+        <pdfEmbedded>true</pdfEmbedded>
+    </fontFamily>
+</fontFamilies>

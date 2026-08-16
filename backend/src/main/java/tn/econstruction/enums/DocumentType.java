@@ -1,0 +1,15 @@
+package tn.econstruction.enums;
+
+public enum DocumentType {
+    OFFICIAL_FORM,
+    PROPERTY_TITLE,
+    LOCATION_PLAN,
+    SITE_PLAN,
+    ARCHITECTURAL_PLANS,
+    DESCRIPTIVE_NOTE,
+    OACA_CERTIFICATE,
+    GEOTECHNICAL_STUDY,
+    UTILITY_PROVIDERS_APPROVAL,
+    TAX_RECEIPT,
+    OTHER
+}

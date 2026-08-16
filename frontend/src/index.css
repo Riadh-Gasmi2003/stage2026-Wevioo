@@ -1,0 +1,427 @@
+/* =========================================================
+   E-Construction Tunisie — feuille de style
+   Design system : couleurs, typographie, espacements, ombres
+   ========================================================= */
+
+:root {
+  /* Couleurs de marque */
+  --red: #A81F2D;
+  --red-dark: #7E1721;
+  --red-light: #F4DEE0;
+  --red-50: #FCF3F3;
+
+  /* Neutres */
+  --ink: #221F1D;
+  --ink-soft: #3A3532;
+  --muted: #6B655F;
+  --muted-soft: #8B8580;
+  --bg: #F7F5F1;
+  --card: #FFFFFF;
+  --line: #E4DFD6;
+  --line-soft: #EFEBE3;
+
+  /* États */
+  --green: #2E7D4F;
+  --green-bg: #E4F2E9;
+  --amber: #B8791A;
+  --amber-bg: #FBF0DE;
+  --red-state-bg: #FBEAEA;
+  --red-state-line: #E7B8BB;
+
+  /* Échelle d'espacement */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+
+  /* Rayons & ombres */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(34, 31, 29, 0.06);
+  --shadow: 0 2px 8px rgba(34, 31, 29, 0.07), 0 1px 2px rgba(34, 31, 29, 0.05);
+  --shadow-lg: 0 12px 32px rgba(34, 31, 29, 0.12), 0 2px 6px rgba(34, 31, 29, 0.06);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 130ms var(--ease);
+  --transition: 200ms var(--ease);
+
+  /* Typographie */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-ar: "Cairo", "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ---------- Reset de base ---------- */
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[dir="rtl"] body { font-family: var(--font-ar); }
+
+h1, h2, h3 { font-family: inherit; color: var(--ink); letter-spacing: -0.01em; }
+
+a {
+  color: var(--red);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover { color: var(--red-dark); text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ---------- Barre supérieure ---------- */
+.topbar {
+  background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  color: #fff;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.topbar .brand {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar .brand small {
+  font-weight: 500;
+  font-size: 11px;
+  opacity: 0.82;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.topbar nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.topbar nav a {
+  color: #fff;
+  margin-inline-start: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+  transition: opacity var(--transition-fast);
+  position: relative;
+  padding-bottom: 2px;
+}
+.topbar nav a:hover { opacity: 1; text-decoration: none; }
+.topbar nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
+}
+.topbar nav a:hover::after { transform: scaleX(1); }
+
+.topbar button.link {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-inline-start: 20px;
+  opacity: 0.9;
+  font-family: inherit;
+  transition: opacity var(--transition-fast);
+  padding: 0;
+}
+.topbar button.link:hover { opacity: 1; }
+
+.lang-switch {
+  margin-inline-start: 26px;
+  padding-inline-start: 20px;
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.28);
+  display: flex;
+  gap: 6px;
+}
+
+.lang-switch button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: inherit;
+  opacity: 0.9;
+  transition: all var(--transition-fast);
+}
+.lang-switch button:hover { opacity: 1; border-color: #fff; }
+.lang-switch button.active {
+  background: #fff;
+  color: var(--red);
+  opacity: 1;
+  border-color: #fff;
+}
+
+/* ---------- Mise en page générale ---------- */
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 20px 90px;
+}
+
+.page.wide { max-width: 960px; }
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0 0 32px;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ---------- Cartes ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+/* ---------- Formulaires ---------- */
+.field { margin-bottom: 18px; }
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--ink-soft);
+}
+
+.field .hint {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--ink);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input::placeholder, textarea::placeholder { color: var(--muted-soft); }
+
+input:hover, select:hover, textarea:hover { border-color: #cfc8bb; }
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px var(--red-light);
+}
+
+input:disabled, select:disabled, textarea:disabled {
+  background: var(--bg);
+  color: var(--muted-soft);
+  cursor: not-allowed;
+}
+
+textarea { resize: vertical; min-height: 90px; }
+
+.row { display: flex; gap: 16px; }
+.row > * { flex: 1; }
+
+/* ---------- Boutons ---------- */
+button.primary {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 11px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+button.primary:hover:not(:disabled) {
+  background: var(--red-dark);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
+}
+button.primary:active:not(:disabled) { transform: translateY(0); }
+button.primary:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
+
+/* ---------- Messages d'état ---------- */
+.error-box {
+  background: var(--red-state-bg);
+  border: 1px solid var(--red-state-line);
+  color: var(--red-dark);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 64px 24px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 14.5px;
+}
+
+/* ---------- Liste de dossiers ---------- */
+.dossier-list { display: flex; flex-direction: column; gap: 14px; }
+
+.dossier-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition-fast);
+}
+.dossier-row:hover {
+  box-shadow: var(--shadow);
+  border-color: #d9d2c5;
+  transform: translateY(-1px);
+}
+
+.dossier-row .num { font-weight: 700; font-size: 14.5px; color: var(--ink); }
+.dossier-row .meta { color: var(--muted); font-size: 13px; margin-top: 3px; }
+
+/* ---------- Badges de statut ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+}
+.badge.ok { background: var(--green-bg); color: var(--green); }
+.badge.wait { background: var(--amber-bg); color: var(--amber); }
+.badge.no { background: var(--red-state-bg); color: var(--red-dark); }
+
+/* ---------- Divers ---------- */
+.top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.top-link:hover { color: var(--red); }
+
+.foot-note {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 34px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  line-height: 1.6;
+}
+
+.motif-box {
+  background: var(--red-state-bg);
+  border: 1px solid var(--red-state-line);
+  border-radius: var(--radius-sm);
+  padding: 15px 18px;
+  margin-top: 18px;
+}
+.motif-box strong { color: var(--red-dark); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+  }
+  .topbar nav {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .topbar nav a,
+  .topbar button.link {
+    margin-inline-start: 0;
+    margin-inline-end: 16px;
+  }
+  .lang-switch {
+    margin-inline-start: 0;
+    padding-inline-start: 0;
+    border-inline-start: none;
+  }
+  .page { padding: 32px 16px 64px; }
+  .row { flex-direction: column; gap: 0; }
+  .card { padding: 20px; }
+  .dossier-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+}

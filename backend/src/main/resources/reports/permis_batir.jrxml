@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="permis_batir" pageWidth="595" pageHeight="842"
+              columnWidth="535" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30"
+              resourceBundle="reports.reports_messages">
+
+    <!-- Un même gabarit sert les deux langues (REPORT_LOCALE pilote $R{...}, voir
+         JasperReportService). Pour l'arabe, chaque ligne libellé/valeur est dupliquée
+         en miroir (libellé à droite, valeur à gauche, texte aligné à droite, sens de
+         lecture RTL) et affichée uniquement quand REPORT_LOCALE = ar ; la version
+         française d'origine reste inchangée et n'est affichée que pour REPORT_LOCALE = fr.
+         Les blocs centrés (titres, pied de page, bloc signature) n'ont pas besoin d'être
+         dupliqués : leur position ne change pas d'une langue à l'autre. -->
+
+    <parameter name="NUMERO_PERMIS" class="java.lang.String"/>
+    <parameter name="NOM_PETITIONNAIRE" class="java.lang.String"/>
+    <parameter name="CIN_PETITIONNAIRE" class="java.lang.String"/>
+    <parameter name="REFERENCE_CADASTRALE" class="java.lang.String"/>
+    <parameter name="DESCRIPTION_TRAVAUX" class="java.lang.String"/>
+    <parameter name="SURFACE_AUTORISEE_VALUE" class="java.lang.Double"/>
+    <parameter name="DATE_DELIVRANCE" class="java.lang.String"/>
+    <parameter name="DATE_EXPIRATION" class="java.lang.String"/>
+    <parameter name="COMMUNE" class="java.lang.String"/>
+    <parameter name="GOUVERNORAT" class="java.lang.String"/>
+    <parameter name="SECRETAIRE_NOM" class="java.lang.String"/>
+    <parameter name="NUMERO_ARRETE" class="java.lang.String"/>
+    <parameter name="CONDITIONS_VALUE" class="java.lang.String"/>
+
+    <title>
+        <band height="760">
+            <textField>
+                <reportElement x="0" y="0" width="535" height="20"/>
+                <textElement textAlignment="Center"><font fontName="FreeSerif" size="11" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.republiqueTunisienne}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="20" width="535" height="20"/>
+                <textElement textAlignment="Center"><font fontName="FreeSerif" size="11" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.ministere}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="60" width="535" height="30"/>
+                <textElement textAlignment="Center"><font fontName="FreeSerif" size="16" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.title}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="90" width="535" height="20"/>
+                <textElement textAlignment="Center"><font fontName="FreeSerif" size="10" isItalic="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.catuConforme}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="0" y="140" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.numeroPermisLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="140" width="355" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[$P{NUMERO_PERMIS}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="140" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.numeroPermisLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="140" width="355" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[$P{NUMERO_PERMIS}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="170" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.petitionnaireLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="170" width="355" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[java.text.MessageFormat.format($R{permisBatir.petitionnaireWithCin}, $P{NOM_PETITIONNAIRE}, $P{CIN_PETITIONNAIRE})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="170" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.petitionnaireLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="170" width="355" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[java.text.MessageFormat.format($R{permisBatir.petitionnaireWithCin}, $P{NOM_PETITIONNAIRE}, $P{CIN_PETITIONNAIRE})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="200" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.referenceCadastraleLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="200" width="355" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[$P{REFERENCE_CADASTRALE}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="200" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.referenceCadastraleLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="200" width="355" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[$P{REFERENCE_CADASTRALE}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="230" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.communeLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="230" width="355" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[java.text.MessageFormat.format($R{permisBatir.communeWithGouvernorat}, $P{COMMUNE}, $P{GOUVERNORAT})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="230" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.communeLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="230" width="355" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[java.text.MessageFormat.format($R{permisBatir.communeWithGouvernorat}, $P{COMMUNE}, $P{GOUVERNORAT})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="260" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.natureTravauxLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="260" width="355" height="60">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><paragraph lineSpacing="Single"/></textElement>
+                <textFieldExpression><![CDATA[$P{DESCRIPTION_TRAVAUX}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="260" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.natureTravauxLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="260" width="355" height="60">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><paragraph lineSpacing="Single"/></textElement>
+                <textFieldExpression><![CDATA[$P{DESCRIPTION_TRAVAUX}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="330" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.surfaceAutoriseeLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="330" width="355" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[$P{SURFACE_AUTORISEE_VALUE} != null ? java.text.MessageFormat.format("{0,number,#0.00} m²", $P{SURFACE_AUTORISEE_VALUE}) : $R{permisBatir.surfaceToConfirm}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="330" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.surfaceAutoriseeLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="330" width="355" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[$P{SURFACE_AUTORISEE_VALUE} != null ? java.text.MessageFormat.format("{0,number,#0.00} m²", $P{SURFACE_AUTORISEE_VALUE}) : $R{permisBatir.surfaceToConfirm}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="360" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.dateDelivranceLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="360" width="355" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[$P{DATE_DELIVRANCE}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="360" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.dateDelivranceLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="360" width="355" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[$P{DATE_DELIVRANCE}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="390" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.dateExpirationLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="390" width="355" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[java.text.MessageFormat.format($R{permisBatir.dateExpirationWithValidite}, $P{DATE_EXPIRATION})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="390" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.dateExpirationLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="390" width="355" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[java.text.MessageFormat.format($R{permisBatir.dateExpirationWithValidite}, $P{DATE_EXPIRATION})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="420" width="180" height="20">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.conditionsLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="420" width="355" height="40">
+                    <printWhenExpression><![CDATA[!"ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement></textElement>
+                <textFieldExpression><![CDATA[$P{CONDITIONS_VALUE} != null ? $P{CONDITIONS_VALUE} : $R{permisBatir.conditionsNone}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="355" y="420" width="180" height="20">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.conditionsLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="420" width="355" height="40">
+                    <printWhenExpression><![CDATA["ar".equals($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right"></textElement>
+                <textFieldExpression><![CDATA[$P{CONDITIONS_VALUE} != null ? $P{CONDITIONS_VALUE} : $R{permisBatir.conditionsNone}]]></textFieldExpression>
+            </textField>
+
+            <line>
+                <reportElement x="0" y="500" width="535" height="1"/>
+            </line>
+
+            <textField>
+                <reportElement x="330" y="520" width="205" height="20"/>
+                <textElement textAlignment="Center"><font fontName="FreeSerif" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{permisBatir.secretaireGeneral}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="330" y="540" width="205" height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$P{SECRETAIRE_NOM}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="330" y="560" width="205" height="20"/>
+                <textElement textAlignment="Center"><font fontName="FreeSerif" size="8"/></textElement>
+                <textFieldExpression><![CDATA[java.text.MessageFormat.format($R{permisBatir.arreteDelegation}, $P{NUMERO_ARRETE})]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="0" y="700" width="535" height="30"/>
+                <textElement textAlignment="Center"><font fontName="FreeSerif" size="7" isItalic="true"/></textElement>
+                <textFieldExpression><![CDATA[$R{report.footerLegal}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+</jasperReport>
